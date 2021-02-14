@@ -23,7 +23,7 @@ const showImages = (images) => {
     document.getElementById("slider-create-area").classList.add("d-none");
     gallery.innerHTML = `
     <div id="alert" class="alert alert-warning col-sm-8" role="alert">
-    No images found! Please search for another image name.
+    Oops no images found! Please search for another image name.
     </div>
     `;
   } else {
@@ -135,7 +135,17 @@ searchBtn.addEventListener("click", function () {
   document.querySelector(".main").style.display = "none";
   clearInterval(timer);
   const search = document.getElementById("search");
-  getImages(search.value);
+  if(search.value == ""){
+    // alert("no name typed in!");
+    gallery.innerHTML = `
+    <div id="alert" class="alert alert-danger col-sm-8" role="alert">
+    Search box is empty! Please enter a name you are looking for.
+    </div>
+    `;
+  }else{
+    getImages(search.value);
+  }
+  
   sliders.length = 0;
 });
 document.getElementById("search").addEventListener("keypress", (event) => {
