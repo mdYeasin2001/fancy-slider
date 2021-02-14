@@ -44,7 +44,8 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !')
+    // alert('Hey, Already added !')
+    element.classList.remove('added');
   }
 }
 var timer
@@ -69,6 +70,7 @@ const createSlider = () => {
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
   sliders.forEach(slide => {
+    console.log(slide);
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
@@ -115,6 +117,11 @@ searchBtn.addEventListener('click', function () {
   const search = document.getElementById('search');
   getImages(search.value)
   sliders.length = 0;
+})
+document.getElementById('search').addEventListener('keypress', (event) =>{
+  if(event.key === 'Enter'){
+    searchBtn.click();
+  }
 })
 
 sliderBtn.addEventListener('click', function () {
